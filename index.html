@@ -211,9 +211,66 @@ main{width:100%;min-width:0}
  .entry-actions{margin-left:auto}
 }
 
+
+/* Winter fairy-tale finish + robust mobile forms */
+body[data-theme="winter"]{
+ --bg:#edf4f7;--paper:#fffefd;--ink:#3e5261;--muted:#8497a4;
+ --berry:#66899f;--berry2:#91b2c2;--lav:#e8f1f5;--lav2:#d8e8ef;
+ --line:#d9e6ec;--rose:#f4e9eb;--sage:#e8f0f2;
+ background:
+  radial-gradient(ellipse at 12% 7%,#dcecf4 0,transparent 34%),
+  radial-gradient(ellipse at 88% 14%,#f5e6e8 0,transparent 29%),
+  radial-gradient(ellipse at 50% 100%,#e3edf3 0,transparent 40%),
+  linear-gradient(145deg,#f9fbfc 0%,#edf4f7 48%,#f7f0ef 100%);
+}
+body[data-theme="winter"] .app{position:relative}
+body[data-theme="winter"] .sidebar,body[data-theme="winter"] .card,body[data-theme="winter"] .hero{
+ background:rgba(255,254,253,.88);backdrop-filter:blur(12px);
+ border:1px solid rgba(255,255,255,.95);
+ box-shadow:0 16px 42px rgba(91,125,145,.10),inset 0 1px 0 #fff;
+}
+body[data-theme="winter"] .hero{
+ background:linear-gradient(115deg,rgba(255,254,252,.96),rgba(233,243,248,.96) 58%,rgba(241,232,239,.94));
+}
+body[data-theme="winter"] .hero:after{content:"❄";font-size:145px;color:#8ebbd0;opacity:.22;right:34px;top:-30px;text-shadow:0 8px 28px #b8d8e7}
+body[data-theme="winter"] .logo{background:linear-gradient(145deg,#f1f8fb,#dcecf3);box-shadow:0 8px 24px #7fa9bd30}
+body[data-theme="winter"] .btn{background:linear-gradient(135deg,#7298ad,#587d93);box-shadow:0 5px 14px #6f91a322}
+body[data-theme="winter"] .btn.soft{background:linear-gradient(135deg,#edf5f8,#e1edf2);color:#58798d}
+body[data-theme="winter"] .nav button:hover,body[data-theme="winter"] .nav button.active{background:linear-gradient(135deg,#eaf3f7,#e4edf3);color:#547b91}
+body[data-theme="winter"] .stat,body[data-theme="winter"] .food-total,body[data-theme="winter"] .notice{background:linear-gradient(145deg,#f0f6f8,#e8f0f3)}
+body[data-theme="winter"] .empty{background:rgba(250,253,254,.8);border-color:#d5e5ed}
+body[data-theme="winter"] .field input,body[data-theme="winter"] .field select,body[data-theme="winter"] .field textarea{background:#fffefd;border-color:#d8e5eb}
+body[data-theme="winter"] .calday{background:#f1f6f8}
+body[data-theme="winter"] .calday.selected{background:#dcebf2}
+body[data-theme="winter"] .pill{background:#eaf3f7}
+body[data-theme="winter"] .footer{color:#91a5b0}
+#snowfall{display:none}
+body[data-theme="winter"] #snowfall{display:block;position:fixed;inset:0;z-index:20;overflow:hidden;pointer-events:none}
+.snowflake{position:absolute;top:-12vh;left:var(--x);font-size:var(--size);color:rgba(130,177,199,.72);text-shadow:0 0 9px #fff,0 0 18px #c9e3ee;opacity:var(--opacity);animation:snow-drift var(--duration) linear var(--delay) infinite;pointer-events:auto;cursor:pointer;user-select:none;transition:transform .25s,color .25s}
+.snowflake:hover{color:#6fabc6;transform:scale(1.8) rotate(35deg)}
+.snowflake.sparkle{animation:none;transform:scale(2.1) rotate(80deg);opacity:0;transition:all .55s ease}
+@keyframes snow-drift{0%{transform:translate3d(0,-8vh,0) rotate(0)}25%{transform:translate3d(24px,25vh,0) rotate(90deg)}50%{transform:translate3d(-18px,52vh,0) rotate(180deg)}75%{transform:translate3d(20px,78vh,0) rotate(270deg)}100%{transform:translate3d(-8px,112vh,0) rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.snowflake{animation:none;display:none}}
+/* Keep every field inside its own column on phones and small tablets */
+@media(max-width:850px){
+ header{align-items:flex-start;flex-direction:column;gap:12px}
+ .head-actions{width:100%;justify-content:flex-start}
+ .formgrid{grid-template-columns:minmax(0,1fr)!important}
+ .field,.field input,.field select,.field textarea{width:100%;min-width:0;max-width:100%}
+ .form>.btn{width:100%;justify-self:stretch}
+ .top-navigation .sidebar{max-width:100%}
+}
+@media(max-width:430px){
+ .brand{align-items:flex-start}
+ .head-actions{display:grid;grid-template-columns:1fr 1fr}
+ .head-actions .theme-toggle{grid-column:1/-1;justify-content:space-between}
+ .head-actions #export,.head-actions label[for="import"]{text-align:center}
+}
+
 </style>
 </head>
 <body data-theme="winter">
+<div id="snowfall" aria-hidden="true"></div>
 <div class="app">
 <header>
  <div class="brand"><div class="logo">🫐</div><div><h1>Blueberry Planner</h1><div class="tagline">твоё пространство для красивой и спокойной жизни</div></div></div>
@@ -239,6 +296,7 @@ function setTheme(theme){
   if(b){b.setAttribute('aria-pressed',String(next==='butter'));document.getElementById('themeLabel').textContent=next==='winter'?'Зимнее оформление':'Стандартное оформление';b.querySelector('.theme-toggle-icon').textContent=next==='winter'?'❄':'✿';}
   const meta=document.getElementById('themeColorMeta');
   if(meta)meta.content=next==='winter'?'#173c31':'#f5ebc9';
+  syncSnowfall();
 }
 (function initTheme(){let saved='winter';try{saved=localStorage.getItem(THEME_KEY)||'winter'}catch{};document.body.dataset.theme=saved==='butter'?'butter':'winter';})();
 
@@ -365,6 +423,24 @@ function parseQuestionFile(){let f=document.getElementById('questionFile').files
 document.addEventListener('click',e=>{let b=e.target.closest('[data-photo]');if(b){let x=list('food').find(a=>a.id===b.dataset.photo);if(x){x.photos.splice(Number(b.dataset.index),1);save();render()}}let h=e.target.closest('[data-habit]');if(h){db.habitChecks=db.habitChecks||{};let k=h.dataset.habit,day=key(new Date());db.habitChecks[k]=db.habitChecks[k]||[];if(!db.habitChecks[k].includes(day))db.habitChecks[k].push(day);save();h.textContent='Готово ✓';h.disabled=true}});
 document.getElementById('export').onclick=()=>{let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='BlueberryPlanner-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 document.getElementById('import').onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let obj=JSON.parse(r.result);if(!obj||typeof obj!=='object'||Array.isArray(obj))throw 0;if(!confirm('Заменить текущие данные содержимым резервной копии?'))return;db=obj;save();openPage(page);alert('Копия восстановлена.')}catch{alert('Не удалось прочитать резервную копию.')}};r.readAsText(f)};
+
+function syncSnowfall(){
+ const layer=document.getElementById('snowfall');if(!layer)return;
+ if(document.body.dataset.theme!=='winter'){layer.innerHTML='';return}
+ if(layer.childElementCount)return;
+ const glyphs=['❄','✧','❅','✦','❄'];
+ for(let i=0;i<22;i++){
+  const s=document.createElement('span');s.className='snowflake';s.textContent=glyphs[i%glyphs.length];
+  s.style.setProperty('--x',(Math.random()*100)+'%');
+  s.style.setProperty('--size',(9+Math.random()*13)+'px');
+  s.style.setProperty('--duration',(15+Math.random()*19)+'s');
+  s.style.setProperty('--delay',(-Math.random()*28)+'s');
+  s.style.setProperty('--opacity',(0.28+Math.random()*.48).toFixed(2));
+  s.addEventListener('click',()=>{s.classList.add('sparkle');setTimeout(()=>{if(s.isConnected){s.remove();layer.appendChild(s);s.classList.remove('sparkle')}},600)});
+  layer.appendChild(s);
+ }
+}
+
 function updateDate(){let d=new Date();document.getElementById('dateNum').textContent=d.getDate();document.getElementById('dateMonth').textContent=d.toLocaleDateString('ru-RU',{month:'long',weekday:'long'})}
 updateDate();nav();render();checkLocalReminders();setTheme(document.body.dataset.theme);
 document.getElementById('themeToggle').addEventListener('click',()=>setTheme(document.body.dataset.theme==='winter'?'butter':'winter'));
