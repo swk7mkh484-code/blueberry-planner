@@ -351,6 +351,98 @@ body[data-theme="winter"] #snowfall{display:block;position:fixed;inset:0;z-index
 /* Editorial serif typography */
 h1,h2,h3,.hero h2,.card h2,.card h3{font-family:"TimesET 75","Times New Roman",Georgia,serif}
 
+
+/* Christmas details + strict iPhone form sizing */
+html,body{max-width:100%;overflow-x:hidden}
+body[data-theme="winter"] .app{width:100%;max-width:1440px;overflow-x:clip}
+body[data-theme="winter"] .content,
+body[data-theme="winter"] .card,
+body[data-theme="winter"] .form,
+body[data-theme="winter"] .formgrid,
+body[data-theme="winter"] .field{min-width:0;max-width:100%}
+body[data-theme="winter"] .formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+body[data-theme="winter"] .field{width:100%;min-width:0}
+body[data-theme="winter"] .field input,
+body[data-theme="winter"] .field select,
+body[data-theme="winter"] .field textarea,
+body[data-theme="winter"] input,
+body[data-theme="winter"] select,
+body[data-theme="winter"] textarea{
+ display:block;box-sizing:border-box;width:100%;min-width:0;max-width:100%;
+}
+body[data-theme="winter"] input[type="date"],
+body[data-theme="winter"] input[type="time"],
+body[data-theme="winter"] input[type="datetime-local"]{
+ -webkit-appearance:none;appearance:none;min-height:48px;
+}
+body[data-theme="winter"] .field input[type="date"]{padding-inline:10px;font-size:clamp(12px,3.7vw,15px)}
+body[data-theme="winter"] .field input[type="date"]::-webkit-date-and-time-value{text-align:center}
+body[data-theme="winter"] .field textarea{resize:vertical}
+body[data-theme="winter"] .card{overflow:hidden}
+body[data-theme="winter"] .top-navigation{max-width:100%;min-width:0}
+body[data-theme="winter"] .top-navigation .sidebar{max-width:100%;overflow-x:auto}
+body[data-theme="winter"] .nav{min-width:0}
+body[data-theme="winter"] .nav button{flex:0 0 auto}
+body[data-theme="winter"] .btn,body[data-theme="winter"] .btn.soft,body[data-theme="winter"] .btn.line{
+ font-weight:650;transition:transform .18s ease,filter .18s ease;
+}
+body[data-theme="winter"] .btn:active{transform:translateY(1px)}
+/* New Year atmosphere: fir garland, ornaments and warm golden lights */
+body[data-theme="winter"] header{position:relative}
+body[data-theme="winter"] header:after{
+ content:"";position:absolute;left:4%;right:4%;bottom:-12px;height:14px;pointer-events:none;opacity:.9;
+ border-bottom:1px solid rgba(211,190,137,.35);border-radius:0 0 50% 50%;
+ background:radial-gradient(circle at 8% 60%,#f4d99b 0 2px,transparent 4px),
+ radial-gradient(circle at 24% 95%,#e8c77d 0 2px,transparent 4px),
+ radial-gradient(circle at 42% 65%,#f7e5b7 0 2px,transparent 4px),
+ radial-gradient(circle at 61% 95%,#e8c77d 0 2px,transparent 4px),
+ radial-gradient(circle at 80% 65%,#f7e5b7 0 2px,transparent 4px),
+ radial-gradient(circle at 95% 90%,#e8c77d 0 2px,transparent 4px);
+}
+body[data-theme="winter"] .hero{
+ background:
+ radial-gradient(ellipse at 90% 8%,rgba(195,164,105,.17),transparent 28%),
+ linear-gradient(125deg,rgba(35,62,73,.98),rgba(27,49,64,.98) 58%,rgba(58,49,62,.96));
+}
+body[data-theme="winter"] .hero:after{
+ content:"✦  ❄  ✧";white-space:pre;right:20px;top:8px;
+ font:52px Georgia,serif;letter-spacing:9px;color:#e8d6a8;opacity:.5;
+ transform:rotate(8deg);text-shadow:0 0 22px rgba(233,210,157,.4)
+}
+body[data-theme="winter"] .hero:before{
+ content:"";position:absolute;right:22px;bottom:-22px;width:170px;height:130px;opacity:.42;
+ background:
+ radial-gradient(ellipse at 50% 100%,#6e927f 0 7%,transparent 8%),
+ linear-gradient(130deg,transparent 48%,#9db7a4 49% 51%,transparent 52%);
+ clip-path:polygon(50% 0,58% 27%,78% 17%,68% 40%,100% 47%,69% 57%,83% 78%,57% 68%,50% 100%,43% 68%,17% 78%,31% 57%,0 47%,32% 40%,22% 17%,42% 27%);
+ background-color:rgba(136,174,151,.18);
+}
+body[data-theme="winter"] .card h3:after{
+ content:" ✧";color:#d8c18e;font:14px Georgia,serif;opacity:.65
+}
+body[data-theme="winter"] .card{
+ background:
+ radial-gradient(circle at 96% 5%,rgba(211,190,137,.07) 0 2px,transparent 3px),
+ linear-gradient(145deg,rgba(31,49,64,.97),rgba(24,41,56,.98));
+}
+body[data-theme="winter"] .btn,
+body[data-theme="winter"] button.btn{
+ background:linear-gradient(135deg,#dce9df,#c7d9ce);color:#29483f;
+}
+body[data-theme="winter"] .btn.soft{background:rgba(203,222,212,.16);color:#e2ece5;border:1px solid rgba(218,232,220,.22)}
+@media(max-width:850px){
+ body[data-theme="winter"] .formgrid{grid-template-columns:minmax(0,1fr)!important}
+ body[data-theme="winter"] .field{grid-column:1/-1}
+ body[data-theme="winter"] .card{padding:clamp(14px,4vw,20px)}
+ body[data-theme="winter"] .app{padding:clamp(10px,3vw,16px)}
+ body[data-theme="winter"] .content{grid-template-columns:minmax(0,1fr)}
+ body[data-theme="winter"] .top-navigation .nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+}
+@media(max-width:430px){
+ body[data-theme="winter"] .field input,body[data-theme="winter"] .field select{min-height:48px}
+ body[data-theme="winter"] .field input[type="date"]{font-size:13px}
+}
+
 </style>
 </head>
 <body data-theme="winter">
