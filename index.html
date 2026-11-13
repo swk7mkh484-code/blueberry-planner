@@ -524,14 +524,25 @@ function csvToRows(t){let lines=t.split(/\r?\n/).filter(Boolean);if(lines.length
 function importYazio(){let f=document.getElementById('yazioFile').files[0],s=document.getElementById('yazioStatus');if(!f){s.textContent='Выбери CSV или JSON-файл.';return}let rd=new FileReader();rd.onload=()=>{try{let raw=String(rd.result),rows=[];if(f.name.toLowerCase().endsWith('.json')){let o=JSON.parse(raw);rows=Array.isArray(o)?o:Object.values(o).find(Array.isArray)||[]}else{let lines=raw.split(/\r?\n/).filter(Boolean),sep=(lines[0].match(/;/g)||[]).length>(lines[0].match(/,/g)||[]).length?';':',',heads=lines[0].split(sep).map(x=>x.trim().toLowerCase().replace(/[ _-]/g,''));rows=csvToRows(raw).map(a=>Object.fromEntries(heads.map((h,i)=>[h,a[i]||''])))}let added=0,skip=0;rows.forEach(r=>{let get=(names)=>{for(let n of names){let k=Object.keys(r).find(x=>x.toLowerCase().replace(/[ _-]/g,'').includes(n));if(k&&r[k])return r[k]}return ''},date=String(get(['date','day','consumedat','createdat'])||key(new Date())),title=get(['foodname','productname','food','product','name','title'])||'Запись из YAZIO',num=names=>Number(String(get(names)).replace(',','.'))||0,k=num(['calories','kcal','energy']),p=num(['protein']),fat=num(['fat']),c=num(['carbs','carbohydrate']);if(!k&&!p&&!fat&&!c){skip++;return}let day=date.slice(0,10);if(list('food').some(x=>x.date===day&&x.title===title&&Number(x.calories||0)===k)){skip++;return}list('food').push({id:uid(),date:day,title,note:'Импортировано из YAZIO',calories:k,protein:p,fat,carbs:c,source:'YAZIO'});added++});save();s.textContent='Импортировано: '+added+' записей; пропущено: '+skip+'.';render()}catch(e){s.textContent='Не удалось прочитать файл: '+e.message}};rd.readAsText(f)}
 
 let yazioOcrWorker=null;
-function yazioFindNumber(text,patterns){for(const p of patterns){let re=new RegExp(p+'[^0-9]{0,18}([0-9]{1,4}(?:[.,][0-9]{1,2})?)','i'),m=text.match(re);if(m)return Number(m[1].replace(',','.'))}return 0}
+function yazioFindMetric(text,labelPattern,min,max){
+ const lines=String(text||'').split(/\\r?\\n/).map(s=>s.trim()).filter(Boolean);
+ const label=new RegExp('(?:^|[^\\p{L}])(?:'+labelPattern+')(?:$|[^\\p{L}])','iu');
+ for(let i=0;i<lines.length;i++){
+  if(!label.test(lines[i]))continue;
+  const after=lines[i].replace(label,' ');
+  let m=after.match(/(?:^|[^\\d])([0-9]{1,5}(?:[.,][0-9]{1,2})?)(?![\\d])/);
+  if(!m&&i+1<lines.length&&/^[0-9][0-9 .,]*$/.test(lines[i+1]))m=lines[i+1].match(/[0-9]{1,5}(?:[.,][0-9]{1,2})?/);
+  if(m){const n=Number(m[1].replace(',','.'));if(Number.isFinite(n)&&n>=min&&n<=max)return n}
+ }
+ return '';
+}
 async function runYazioScreenshotOCR(){
  const files=[...(document.getElementById('yazioImages')?.files||[])],status=document.getElementById('yazioOcrStatus'),preview=document.getElementById('yazioOcrPreview'),review=document.getElementById('yazioReview');
  if(!files.length){status.textContent='Сначала выбери один или несколько скриншотов.';return}
  if(!files.every(f=>f.type.startsWith('image/'))){status.textContent='Можно загружать только изображения.';return}
- const btn=document.getElementById('yazioOcrBtn');btn.disabled=true;review.hidden=true;preview.innerHTML='';status.textContent='Загружаю OCR-движок…';
+ const btn=document.getElementById('yazioOcrBtn');btn.disabled=true;review.hidden=true;preview.innerHTML='';status.textContent='Загружаю распознавание…';
  try{
-  if(!window.Tesseract){await new Promise((resolve,reject)=>{let s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';s.onload=resolve;s.onerror=()=>reject(new Error('Не удалось загрузить OCR-движок. Проверь интернет и попробуй ещё раз.'));document.head.appendChild(s)})}
+  if(!window.Tesseract){await new Promise((resolve,reject)=>{let s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';s.onload=resolve;s.onerror=()=>reject(new Error('Не удалось загрузить OCR-движок. Проверь интернет.'));document.head.appendChild(s)})}
   if(!yazioOcrWorker)yazioOcrWorker=await Tesseract.createWorker('rus+eng',1,{logger:m=>{if(m.status==='recognizing text')status.textContent='Распознаю… '+Math.round((m.progress||0)*100)+'%'}});
   let chunks=[];
   for(let i=0;i<files.length;i++){
@@ -539,13 +550,18 @@ async function runYazioScreenshotOCR(){
    const result=await yazioOcrWorker.recognize(files[i]);chunks.push(result.data.text||'');
    const url=URL.createObjectURL(files[i]);preview.insertAdjacentHTML('beforeend','<img class="photo" style="max-width:110px;max-height:150px;object-fit:contain" src="'+url+'" alt="Скриншот '+(i+1)+'">');
   }
-  const textAll=chunks.join('\n\n--- следующий скриншот ---\n\n');
+  const textAll=chunks.join('\\n\\n--- следующий скриншот ---\\n\\n');
   document.getElementById('yazioOcrText').value=textAll;
-  document.getElementById('yazioCalories').value=yazioFindNumber(textAll,['(?:ккал|kcal|калори[ийя])','(?:калори[ийя]|kcal|ккал)']);
-  document.getElementById('yazioProtein').value=yazioFindNumber(textAll,['(?:белк[иаов]?|protein|б)']);
-  document.getElementById('yazioFat').value=yazioFindNumber(textAll,['(?:жир[аы]?|fat|ж)']);
-  document.getElementById('yazioCarbs').value=yazioFindNumber(textAll,['(?:углевод[аы]?|carbs?|угл)']);
-  review.hidden=false;status.textContent='Готово. Проверь цифры: распознавание может ошибаться, особенно на мелком тексте.';
+  const vals=[
+   yazioFindMetric(textAll,'калори[йяи]|ккал|kcal|calories?',50,10000),
+   yazioFindMetric(textAll,'белк[иаов]?|protein',0,500),
+   yazioFindMetric(textAll,'жир[аы]?|fat',0,500),
+   yazioFindMetric(textAll,'углевод[аы]?|carbs?',0,1000)
+  ];
+  ['yazioCalories','yazioProtein','yazioFat','yazioCarbs'].forEach((id,i)=>document.getElementById(id).value=vals[i]);
+  review.hidden=false;
+  const found=vals.filter(v=>v!=='').length;
+  status.textContent=found?'Нашла '+found+' из 4 показателей по подписанным строкам. Остальные оставила пустыми — проверь их вручную.':'Не удалось надёжно найти итоги КБЖУ. Цифры не подставлены, чтобы не испортить дневник. Введи показатели вручную по скриншоту.';
  }catch(e){status.textContent='Не получилось распознать: '+e.message}
  finally{btn.disabled=false}
 }
