@@ -233,7 +233,7 @@ body[data-theme="winter"] .sidebar,body[data-theme="winter"] .card,body[data-the
 body[data-theme="winter"] .hero{
  background:linear-gradient(115deg,rgba(255,254,252,.96),rgba(233,243,248,.96) 58%,rgba(241,232,239,.94));
 }
-body[data-theme="winter"] .hero:after{content:"❄";font-size:145px;color:#8ebbd0;opacity:.22;right:34px;top:-30px;text-shadow:0 8px 28px #b8d8e7}
+body[data-theme="winter"] .hero:after{content:"❄";font-size:145px;color:#d7e7e7;opacity:.12;right:34px;top:-30px;text-shadow:0 8px 28px #b8d8e7}
 body[data-theme="winter"] .logo{background:linear-gradient(145deg,#f1f8fb,#dcecf3);box-shadow:0 8px 24px #7fa9bd30}
 body[data-theme="winter"] .btn{background:linear-gradient(135deg,#7298ad,#587d93);box-shadow:0 5px 14px #6f91a322}
 body[data-theme="winter"] .btn.soft{background:linear-gradient(135deg,#edf5f8,#e1edf2);color:#58798d}
@@ -268,13 +268,96 @@ body[data-theme="winter"] #snowfall{display:block;position:fixed;inset:0;z-index
  .head-actions #export,.head-actions label[for="import"]{text-align:center}
 }
 
+
+/* === Midnight Christmas winter theme === */
+body[data-theme="winter"]{
+ --bg:#101c29;--paper:#192b3b;--ink:#edf3f2;--muted:#b4c4c9;
+ --berry:#b7c9d0;--berry2:#d6e0df;--lav:#263b4b;--lav2:#30485a;
+ --line:#3b5260;--rose:#493744;--sage:#263e3a;
+ --shadow:0 18px 48px rgba(0,0,0,.24);
+ background:
+  radial-gradient(ellipse at 12% 0%,rgba(54,102,126,.42),transparent 36%),
+  radial-gradient(ellipse at 90% 12%,rgba(112,73,91,.27),transparent 31%),
+  radial-gradient(ellipse at 50% 100%,rgba(36,85,73,.28),transparent 42%),
+  linear-gradient(145deg,#101b28 0%,#172b3b 48%,#1b2736 100%);
+ color:var(--ink);
+}
+body[data-theme="winter"] .app{position:relative;z-index:1}
+body[data-theme="winter"] header .brand h1,
+body[data-theme="winter"] .hero h2,
+body[data-theme="winter"] .card h2,
+body[data-theme="winter"] .card h3{color:#f3eee5}
+body[data-theme="winter"] .tagline,
+body[data-theme="winter"] .muted,
+body[data-theme="winter"] .field label,
+body[data-theme="winter"] .privacy{color:#b8c8cc}
+body[data-theme="winter"] .logo{background:linear-gradient(145deg,#d8e9df,#b6d2c2);box-shadow:0 8px 24px #0004}
+body[data-theme="winter"] .sidebar,
+body[data-theme="winter"] .card{
+ background:linear-gradient(145deg,rgba(31,49,64,.96),rgba(24,41,56,.97));
+ border:1px solid rgba(196,218,220,.15);
+ box-shadow:0 16px 42px rgba(0,0,0,.19),inset 0 1px rgba(255,255,255,.04);
+}
+body[data-theme="winter"] .hero{
+ background:linear-gradient(115deg,rgba(32,58,73,.97),rgba(36,61,73,.94) 55%,rgba(69,49,66,.9));
+ border:1px solid rgba(214,230,226,.2);
+ box-shadow:0 18px 50px rgba(0,0,0,.2);
+}
+body[data-theme="winter"] .hero:after{color:#d7e7e7;opacity:.12;text-shadow:0 0 34px #b8d9df}
+body[data-theme="winter"] .btn,
+body[data-theme="winter"] button.btn{
+ background:linear-gradient(135deg,#d8e7df,#c4d9d1);
+ color:#29483f;border:1px solid rgba(236,246,239,.5);
+ box-shadow:0 5px 18px rgba(0,0,0,.12);
+}
+body[data-theme="winter"] .btn.soft,
+body[data-theme="winter"] .btn.line,
+body[data-theme="winter"] .nav button,
+body[data-theme="winter"] .nav button.active,
+body[data-theme="winter"] .nav button:hover{
+ background:rgba(205,224,222,.12);color:#e0ebea;border:1px solid rgba(204,225,222,.14);
+}
+body[data-theme="winter"] .nav button.active{background:linear-gradient(135deg,#d9e9e1,#bdd4cc);color:#29483f}
+body[data-theme="winter"] .stat,
+body[data-theme="winter"] .food-total,
+body[data-theme="winter"] .notice,
+body[data-theme="winter"] .empty,
+body[data-theme="winter"] .pill,
+body[data-theme="winter"] .calday{
+ background:rgba(193,216,217,.10);color:#dce7e6;border-color:rgba(204,225,222,.17)
+}
+body[data-theme="winter"] .field input,
+body[data-theme="winter"] .field select,
+body[data-theme="winter"] .field textarea,
+body[data-theme="winter"] input,
+body[data-theme="winter"] select,
+body[data-theme="winter"] textarea{
+ background:#203648;color:#f0f4f1;border-color:#526b79;
+}
+body[data-theme="winter"] input::placeholder,
+body[data-theme="winter"] textarea::placeholder{color:#9eafb5}
+body[data-theme="winter"] .calday.selected{background:#c9ded5;color:#29483f}
+body[data-theme="winter"] .footer{color:#a8b9bf}
+body[data-theme="winter"] .macro-track{background:#314958}
+body[data-theme="winter"] .macro-fill{background:linear-gradient(90deg,#a8cfc0,#d8d4b6)}
+body[data-theme="winter"] .food-total b{color:#e9eee8}
+body[data-theme="winter"] .hero-date{color:#d7e4e1}
+/* Snow stays behind content, small and quiet */
+#snowfall{display:none}
+body[data-theme="winter"] #snowfall{display:block;position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.snowflake{position:absolute;top:-8vh;left:var(--x);font-size:var(--size);line-height:1;color:rgba(220,239,238,.45);text-shadow:0 0 8px rgba(206,232,231,.3);opacity:var(--opacity);animation:snow-drift var(--duration) linear var(--delay) infinite;pointer-events:none;user-select:none}
+@keyframes snow-drift{0%{transform:translate3d(0,-8vh,0) rotate(0)}50%{transform:translate3d(12px,52vh,0) rotate(180deg)}100%{transform:translate3d(-8px,108vh,0) rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.snowflake{animation:none;display:none}}
+/* Editorial serif typography */
+h1,h2,h3,.hero h2,.card h2,.card h3{font-family:"TimesET 75","Times New Roman",Georgia,serif}
+
 </style>
 </head>
 <body data-theme="winter">
 <div id="snowfall" aria-hidden="true"></div>
 <div class="app">
 <header>
- <div class="brand"><div class="logo" aria-hidden="true"><svg viewBox="0 0 64 64" width="34" height="34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 51C24 41 34 28 49 12" stroke="#557D68" stroke-width="2.8" stroke-linecap="round"/><path d="M22 42C10 40 7 32 9 23c10 0 17 5 18 14" fill="#7FAF91"/><path d="M31 32C29 20 35 12 46 9c4 10 0 19-11 25" fill="#9BC6A6"/><path d="M17 48c-1-9 5-15 14-17 2 9-3 16-14 17" fill="#B5D5B8"/></svg></div><div><h1>Blueberry Planner</h1><div class="tagline">твоё пространство для красивой и спокойной жизни</div></div></div>
+ <div class="brand"><div class="logo" aria-hidden="true"><svg viewBox="0 0 64 64" width="34" height="34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 51C24 41 34 28 49 12" stroke="#557D68" stroke-width="2.8" stroke-linecap="round"/><path d="M22 42C10 40 7 32 9 23c10 0 17 5 18 14" fill="#7FAF91"/><path d="M31 32C29 20 35 12 46 9c4 10 0 19-11 25" fill="#9BC6A6"/><path d="M17 48c-1-9 5-15 14-17 2 9-3 16-14 17" fill="#B5D5B8"/></svg></div><div><h1>Planner iamdasha</h1><div class="tagline">твоё пространство для красивой и спокойной жизни</div></div></div>
  <div class="head-actions"><button class="btn line theme-toggle" id="themeToggle" type="button" aria-pressed="false"><span class="theme-toggle-icon">❄</span><span id="themeLabel">Зимнее оформление</span><span class="toggle-track"><span class="toggle-thumb"></span></span></button><button class="btn soft" id="export">↓ Резервная копия</button><label class="btn line" for="import">↑ Восстановить</label><input id="import" type="file" accept=".json,application/json" hidden></div>
 </header>
 <div class="top-navigation"><aside class="sidebar"><nav class="nav" id="nav"></nav><div class="privacy">♡ Данные хранятся локально в этом браузере. Делай резервные копии регулярно.</div></aside></div>
@@ -284,7 +367,7 @@ body[data-theme="winter"] #snowfall{display:block;position:fixed;inset:0;z-index
 <div class="content" id="content"></div>
 </main>
 </div>
-<div class="footer">BLUEBERRY PLANNER · личное пространство · локальное хранение</div>
+<div class="footer">PLANNER IAMDASHA · личное пространство · локальное хранение</div>
 </div>
 <script>
 
@@ -349,12 +432,12 @@ return panel('Новое напоминание',`<form id="localReminderForm" c
 function bindReminderPanel(){
 let f=document.getElementById('localReminderForm');if(f)f.onsubmit=e=>{e.preventDefault();let v=Object.fromEntries(new FormData(f));db.localReminders=db.localReminders||[];db.localReminders.push({id:uid(),...v,notified:''});save();render()};
 let b=document.getElementById('enableLocalNotifications');if(b)b.onclick=async()=>{if(!('Notification'in window)){alert('Этот браузер не поддерживает уведомления.');return}let p=await Notification.requestPermission();alert(p==='granted'?'Уведомления разрешены. Оставляй планер открытым для проверки расписания.':'Разрешение на уведомления не выдано.')};
-let ex=document.getElementById('exportReminderList');if(ex)ex.onclick=async()=>{let a=db.localReminders||[];if(!a.length){alert('Сначала добавь напоминания.');return}let txt='Blueberry Planner — мои напоминания\\n\\n'+a.map(x=>`□ ${x.title} — ${x.date} в ${x.time} (${x.repeat==='daily'?'каждый день':x.repeat==='weekly'?'еженедельно':'один раз'})`).join('\\n');try{if(navigator.share)await navigator.share({title:'Напоминания Blueberry Planner',text:txt});else if(navigator.clipboard){await navigator.clipboard.writeText(txt);alert('Список скопирован. Открой Напоминания iPhone и вставь его в новый список.')}else{let blob=new Blob([txt],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='Blueberry-reminders.txt';a.click();URL.revokeObjectURL(u)}}catch(err){if(err.name!=='AbortError')alert('Не удалось открыть меню «Поделиться».')}};
+let ex=document.getElementById('exportReminderList');if(ex)ex.onclick=async()=>{let a=db.localReminders||[];if(!a.length){alert('Сначала добавь напоминания.');return}let txt='Planner iamdasha — мои напоминания\\n\\n'+a.map(x=>`□ ${x.title} — ${x.date} в ${x.time} (${x.repeat==='daily'?'каждый день':x.repeat==='weekly'?'еженедельно':'один раз'})`).join('\\n');try{if(navigator.share)await navigator.share({title:'Напоминания Planner iamdasha',text:txt});else if(navigator.clipboard){await navigator.clipboard.writeText(txt);alert('Список скопирован. Открой Напоминания iPhone и вставь его в новый список.')}else{let blob=new Blob([txt],{type:'text/plain;charset=utf-8'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='Blueberry-reminders.txt';a.click();URL.revokeObjectURL(u)}}catch(err){if(err.name!=='AbortError')alert('Не удалось открыть меню «Поделиться».')}};
 }
 function checkLocalReminders(){
 if(!('Notification'in window)||Notification.permission!=='granted')return;
 let now=new Date(),today=key(now),time=now.toTimeString().slice(0,5);
-(db.localReminders||[]).forEach(x=>{let due=x.time===time&&(x.repeat==='daily'||x.date===today||(x.repeat==='weekly'&&new Date(x.date+'T12:00:00').getDay()===now.getDay()));let stamp=today+' '+time;if(due&&x.notified!==stamp){try{new Notification('Blueberry Planner',{body:x.title,icon:'./icon.svg',tag:'bp-'+x.id});x.notified=stamp;if(x.repeat==='once')x.done=true;save()}catch{}}});
+(db.localReminders||[]).forEach(x=>{let due=x.time===time&&(x.repeat==='daily'||x.date===today||(x.repeat==='weekly'&&new Date(x.date+'T12:00:00').getDay()===now.getDay()));let stamp=today+' '+time;if(due&&x.notified!==stamp){try{new Notification('Planner iamdasha',{body:x.title,icon:'./icon.svg',tag:'bp-'+x.id});x.notified=stamp;if(x.repeat==='once')x.done=true;save()}catch{}}});
 }
 setInterval(checkLocalReminders,30000);
 
@@ -430,13 +513,13 @@ function syncSnowfall(){
  if(document.body.dataset.theme!=='winter'){layer.innerHTML='';return}
  if(layer.childElementCount)return;
  const glyphs=['❄','✧','❅','✦','❄'];
- for(let i=0;i<22;i++){
+ for(let i=0;i<12;i++){
   const s=document.createElement('span');s.className='snowflake';s.textContent=glyphs[i%glyphs.length];
   s.style.setProperty('--x',(Math.random()*100)+'%');
-  s.style.setProperty('--size',(9+Math.random()*13)+'px');
+  s.style.setProperty('--size',(5+Math.random()*5)+'px');
   s.style.setProperty('--duration',(15+Math.random()*19)+'s');
   s.style.setProperty('--delay',(-Math.random()*28)+'s');
-  s.style.setProperty('--opacity',(0.28+Math.random()*.48).toFixed(2));
+  s.style.setProperty('--opacity',(0.12+Math.random()*.18).toFixed(2));
   s.addEventListener('click',()=>{s.classList.add('sparkle');setTimeout(()=>{if(s.isConnected){s.remove();layer.appendChild(s);s.classList.remove('sparkle')}},600)});
   layer.appendChild(s);
  }
