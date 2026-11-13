@@ -1,0 +1,19 @@
+{
+  "name": "Blueberry Planner",
+  "short_name": "Blueberry",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f2f4",
+  "theme_color": "#665078",
+  "description": "Личный планер",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
