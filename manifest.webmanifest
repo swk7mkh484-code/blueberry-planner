@@ -1,12 +1,12 @@
 {
-  "name": "Blueberry Planner",
-  "short_name": "Blueberry",
+  "name": "Planner iamdasha",
+  "short_name": "Planner",
   "lang": "ru",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#edf1eb",
-  "theme_color": "#173c31",
+  "background_color": "#e9f4ed",
+  "theme_color": "#dcefe3",
   "description": "Личный планер",
   "icons": [
     {

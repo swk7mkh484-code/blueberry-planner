@@ -6,11 +6,11 @@
 <meta name="theme-color" content="#173c31" id="themeColorMeta">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Blueberry">
+<meta name="apple-mobile-web-app-title" content="Planner iamdasha">
 <link rel="icon" type="image/svg+xml" href="./icon.svg">
 <link rel="manifest" href="manifest.webmanifest">
 
-<title>Blueberry Planner</title>
+<title>Planner iamdasha</title>
 <style>
 :root{--bg:#f7f2f4;--paper:#fffdfb;--ink:#392f42;--muted:#8b8090;--berry:#665078;--berry2:#8d75a1;--lav:#eee7f2;--lav2:#e3d7eb;--line:#eee6ed;--rose:#f6e9eb;--sage:#eaf0e8;--shadow:0 12px 32px #59436112}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 90% 0%,#eee5f2 0,transparent 30%),linear-gradient(135deg,#fbf8f5,#f4eef6 62%,#f9f1f2);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.app{max-width:1440px;margin:auto;padding:22px;min-height:100vh}
@@ -273,7 +273,7 @@ body[data-theme="winter"] #snowfall{display:block;position:fixed;inset:0;z-index
 <div id="snowfall" aria-hidden="true"></div>
 <div class="app">
 <header>
- <div class="brand"><div class="logo">🫐</div><div><h1>Blueberry Planner</h1><div class="tagline">твоё пространство для красивой и спокойной жизни</div></div></div>
+ <div class="brand"><div class="logo" aria-hidden="true"><svg viewBox="0 0 64 64" width="34" height="34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 51C24 41 34 28 49 12" stroke="#557D68" stroke-width="2.8" stroke-linecap="round"/><path d="M22 42C10 40 7 32 9 23c10 0 17 5 18 14" fill="#7FAF91"/><path d="M31 32C29 20 35 12 46 9c4 10 0 19-11 25" fill="#9BC6A6"/><path d="M17 48c-1-9 5-15 14-17 2 9-3 16-14 17" fill="#B5D5B8"/></svg></div><div><h1>Blueberry Planner</h1><div class="tagline">твоё пространство для красивой и спокойной жизни</div></div></div>
  <div class="head-actions"><button class="btn line theme-toggle" id="themeToggle" type="button" aria-pressed="false"><span class="theme-toggle-icon">❄</span><span id="themeLabel">Зимнее оформление</span><span class="toggle-track"><span class="toggle-thumb"></span></span></button><button class="btn soft" id="export">↓ Резервная копия</button><label class="btn line" for="import">↑ Восстановить</label><input id="import" type="file" accept=".json,application/json" hidden></div>
 </header>
 <div class="top-navigation"><aside class="sidebar"><nav class="nav" id="nav"></nav><div class="privacy">♡ Данные хранятся локально в этом браузере. Делай резервные копии регулярно.</div></aside></div>
