@@ -5,8 +5,8 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f7f2f4",
-  "theme_color": "#665078",
+  "background_color": "#edf1eb",
+  "theme_color": "#173c31",
   "description": "Личный планер",
   "icons": [
     {
