@@ -108,13 +108,79 @@ body[data-theme="butter"] .toggle-thumb{transform:translateX(15px)}
  .card{padding:16px}
 }
 
-.dashboard-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}.dashboard-links{margin-top:12px}.card h4{font:600 14px Georgia,serif;margin:16px 0 8px}@media(max-width:560px){.dashboard-grid{grid-template-columns:1fr}.dashboard-links .btn{flex:1 1 auto}}</style>
+.dashboard-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}.dashboard-links{margin-top:12px}.card h4{font:600 14px Georgia,serif;margin:16px 0 8px}@media(max-width:560px){.dashboard-grid{grid-template-columns:1fr}.dashboard-links .btn{flex:1 1 auto}}
+/* Refined editorial themes based on the user's visual references */
+body[data-theme="winter"]{
+ --bg:#f5f4f1;--paper:#fffdfb;--ink:#46545e;--muted:#87939b;
+ --berry:#718b9b;--berry2:#91a8b5;--lav:#e8eef1;--lav2:#dce6eb;
+ --line:#dce4e8;--rose:#f2ece8;--sage:#e9eff0;
+ --shadow:0 12px 32px #536b7814;
+ background:radial-gradient(ellipse at 8% 0%,#e6edf0 0,transparent 34%),radial-gradient(ellipse at 95% 8%,#f2e9e1 0,transparent 28%),linear-gradient(135deg,#fbf9f6,#f0f3f3 58%,#f8f4f0);
+ color:var(--ink)
+}
+body[data-theme="winter"] .sidebar,body[data-theme="winter"] .card,body[data-theme="winter"] .hero{background:#fffdfbf2;border-color:#e8edef}
+body[data-theme="winter"] .logo{background:linear-gradient(145deg,#edf2f3,#dce7eb)}
+body[data-theme="winter"] .hero{background:linear-gradient(110deg,#fffdfa 0%,#eef2f2 58%,#e4ecef 100%)}
+body[data-theme="winter"] .hero:after{content:"❄";color:#a8bdc8;font-size:125px;opacity:.28;right:36px;top:-25px}
+body[data-theme="winter"] .btn{background:#718b9b}
+body[data-theme="winter"] .btn.soft{background:#e8eef1;color:#607d8e}
+body[data-theme="winter"] .btn.line{color:#607d8e;border-color:#dce4e8}
+body[data-theme="winter"] .nav button{color:#71808a}
+body[data-theme="winter"] .nav button:hover,body[data-theme="winter"] .nav button.active{background:#e8eef1;color:#607d8e}
+body[data-theme="winter"] .eyebrow,body[data-theme="winter"] .hero-date b,body[data-theme="winter"] .stat b,body[data-theme="winter"] .food-total b{color:#607d8e}
+body[data-theme="winter"] .field input,body[data-theme="winter"] .field select,body[data-theme="winter"] .field textarea,body[data-theme="winter"] .entry{border-color:#dce4e8;background:#fffefa;color:#46545e}
+body[data-theme="winter"] .field input:focus,body[data-theme="winter"] .field textarea:focus,body[data-theme="winter"] .field select:focus{border-color:#a8bdc8;box-shadow:0 0 0 3px #e8eef1}
+body[data-theme="winter"] .calday{background:#f1f4f4}
+body[data-theme="winter"] .calday.today{border-color:#718b9b}
+body[data-theme="winter"] .calday.selected{background:#dce8ec}
+body[data-theme="winter"] .calday.has:after{background:#718b9b}
+body[data-theme="winter"] .stat,body[data-theme="winter"] .food-total,body[data-theme="winter"] .notice{background:#eff3f3}
+body[data-theme="winter"] .progress{background:#e5ecee}
+body[data-theme="winter"] .progress span,body[data-theme="winter"] .macro-fill{background:linear-gradient(90deg,#7895a4,#b8cbd2)}
+body[data-theme="winter"] .macro-track{background:#e7edef}
+body[data-theme="winter"] .pill{background:#e8eef1;color:#607d8e}
+body[data-theme="winter"] .empty{border-color:#dce4e8;background:#fbfcfb;color:#87939b}
+body[data-theme="winter"] .entry-actions .btn.warn{background:#f2ece8;color:#8a6f61}
+body[data-theme="butter"]{
+ --bg:#f7f1e8;--paper:#fffaf3;--ink:#51483f;--muted:#968a7d;
+ --berry:#89947c;--berry2:#aab29b;--lav:#e9ecdf;--lav2:#dce2d1;
+ --line:#e9e0d5;--rose:#f3e4df;--sage:#e8ecdf;
+ --shadow:0 12px 32px #65574612;
+ background:radial-gradient(ellipse at 8% 0%,#f2e5df 0,transparent 34%),radial-gradient(ellipse at 95% 10%,#e7eadf 0,transparent 30%),linear-gradient(135deg,#fffaf2,#f5eee5 58%,#f2e8e0);
+ color:var(--ink)
+}
+body[data-theme="butter"] .sidebar,body[data-theme="butter"] .card,body[data-theme="butter"] .hero{background:#fffaf3f2;border-color:#f2e9df}
+body[data-theme="butter"] .logo{background:linear-gradient(145deg,#f2e5df,#e8ecdf)}
+body[data-theme="butter"] .hero{background:linear-gradient(110deg,#fffaf3 0%,#f3e8e2 54%,#e9ecdf 100%)}
+body[data-theme="butter"] .hero:after{content:"❀";color:#aeb79e;font-size:132px;opacity:.32}
+body[data-theme="butter"] .btn{background:#89947c;color:white}
+body[data-theme="butter"] .btn.soft{background:#e9ecdf;color:#69765d}
+body[data-theme="butter"] .btn.line{color:#69765d;border-color:#e9e0d5}
+body[data-theme="butter"] .nav button{color:#81786e}
+body[data-theme="butter"] .nav button:hover,body[data-theme="butter"] .nav button.active{background:#e9ecdf;color:#69765d}
+body[data-theme="butter"] .eyebrow,body[data-theme="butter"] .hero-date b,body[data-theme="butter"] .stat b,body[data-theme="butter"] .food-total b{color:#78856c}
+body[data-theme="butter"] .field input,body[data-theme="butter"] .field select,body[data-theme="butter"] .field textarea,body[data-theme="butter"] .entry{border-color:#e9e0d5;background:#fffdf8;color:#51483f}
+body[data-theme="butter"] .field input:focus,body[data-theme="butter"] .field textarea:focus,body[data-theme="butter"] .field select:focus{border-color:#b7bea7;box-shadow:0 0 0 3px #e9ecdf}
+body[data-theme="butter"] .calday{background:#f5f1e8}
+body[data-theme="butter"] .calday.today{border-color:#89947c}
+body[data-theme="butter"] .calday.selected{background:#e5e9d9}
+body[data-theme="butter"] .calday.has:after{background:#89947c}
+body[data-theme="butter"] .stat,body[data-theme="butter"] .food-total,body[data-theme="butter"] .notice{background:#f0efe5}
+body[data-theme="butter"] .progress{background:#e7e8d9}
+body[data-theme="butter"] .progress span,body[data-theme="butter"] .macro-fill{background:linear-gradient(90deg,#89947c,#c4c9ad)}
+body[data-theme="butter"] .macro-track{background:#e7e8d9}
+body[data-theme="butter"] .pill{background:#e9ecdf;color:#69765d}
+body[data-theme="butter"] .empty{border-color:#e9e0d5;background:#fffdf8;color:#968a7d}
+body[data-theme="butter"] .entry-actions .btn.warn{background:#f3e4df;color:#8b655b}
+.theme-toggle{border-radius:999px}
+
+</style>
 </head>
 <body data-theme="winter">
 <div class="app">
 <header>
  <div class="brand"><div class="logo">🫐</div><div><h1>Blueberry Planner</h1><div class="tagline">твоё пространство для красивой и спокойной жизни</div></div></div>
- <div class="head-actions"><button class="btn line theme-toggle" id="themeToggle" type="button" aria-pressed="false"><span class="theme-toggle-icon">❄</span><span id="themeLabel">Зимняя тема</span><span class="toggle-track"><span class="toggle-thumb"></span></span></button><button class="btn soft" id="export">↓ Резервная копия</button><label class="btn line" for="import">↑ Восстановить</label><input id="import" type="file" accept=".json,application/json" hidden></div>
+ <div class="head-actions"><button class="btn line theme-toggle" id="themeToggle" type="button" aria-pressed="false"><span class="theme-toggle-icon">❄</span><span id="themeLabel">Зимнее оформление</span><span class="toggle-track"><span class="toggle-thumb"></span></span></button><button class="btn soft" id="export">↓ Резервная копия</button><label class="btn line" for="import">↑ Восстановить</label><input id="import" type="file" accept=".json,application/json" hidden></div>
 </header>
 <div class="top-navigation"><aside class="sidebar"><nav class="nav" id="nav"></nav><div class="privacy">♡ Данные хранятся локально в этом браузере. Делай резервные копии регулярно.</div></aside></div>
 <div class="layout">
@@ -133,7 +199,7 @@ function setTheme(theme){
   document.body.dataset.theme=next;
   localStorage.setItem(THEME_KEY,next);
   const b=document.getElementById('themeToggle');
-  if(b){b.setAttribute('aria-pressed',String(next==='butter'));document.getElementById('themeLabel').textContent=next==='winter'?'Зимняя тема':'Сливочное масло';b.querySelector('.theme-toggle-icon').textContent=next==='winter'?'❄':'☼';}
+  if(b){b.setAttribute('aria-pressed',String(next==='butter'));document.getElementById('themeLabel').textContent=next==='winter'?'Зимнее оформление':'Стандартное оформление';b.querySelector('.theme-toggle-icon').textContent=next==='winter'?'❄':'✿';}
   const meta=document.getElementById('themeColorMeta');
   if(meta)meta.content=next==='winter'?'#173c31':'#f5ebc9';
 }
