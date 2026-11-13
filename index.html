@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f4eef6">
+<meta name="theme-color" content="#173c31" id="themeColorMeta">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Blueberry">
@@ -35,13 +35,86 @@ main{min-width:0}.hero{padding:25px 29px;margin-bottom:17px;display:flex;justify
  .top-navigation .nav button{padding:9px 12px}
 }
 
+
+/* Seasonal themes: winter evergreen (default) and butter cream */
+:root{--bg:#edf1eb;--paper:#fbfaf4;--ink:#26382f;--muted:#78877d;--berry:#214c3d;--berry2:#426e58;--lav:#e4ece3;--lav2:#d2dfd2;--line:#dfe7dd;--rose:#f1e7df;--sage:#e4ece3;--shadow:0 12px 32px #1b392615}
+body{background:radial-gradient(circle at 90% 0%,#dce8dc 0,transparent 32%),linear-gradient(135deg,#f8f7f0,#edf2eb 62%,#e8efe7);color:var(--ink)}
+.sidebar,.card,.hero{background:#fbfaf4f2;border-color:#fff}
+.btn{background:var(--berry);color:#fff}
+.btn.soft{background:var(--lav);color:var(--berry)}
+.btn.line{color:var(--berry);border-color:var(--line)}
+.nav button{color:#66786d}
+.nav button:hover,.nav button.active{background:var(--lav);color:var(--berry)}
+.hero{background:linear-gradient(110deg,#fffdf7 0%,#e9f0e7 70%,#dfe9df 100%)}
+.hero:after{color:#9eb9a2}
+.eyebrow,.hero-date b,.stat b,.food-total b{color:var(--berry)}
+.hero-date{background:#ffffffb5}
+.field input,.field select,.field textarea{border-color:var(--line);background:#fffefa;color:var(--ink)}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#8aa995;box-shadow:0 0 0 3px #e3ede3}
+.calday{background:#f2f5ef}
+.calday.today{border-color:var(--berry)}
+.calday.selected{background:#dce9dd}
+.calday.has:after{background:var(--berry)}
+.stat,.food-total,.notice{background:#eef3ec}
+.progress{background:#e3ebe1}.progress span{background:linear-gradient(90deg,#456f58,#9db89d)}
+.macro-track{background:#e7ede5}.macro-fill{background:linear-gradient(90deg,#4f795f,#a9c4a5)}
+.macro-fill.over{background:linear-gradient(90deg,#bd806b,#d8aa8f)}
+.checkrow input{accent-color:var(--berry)}
+.pill{background:var(--lav);color:var(--berry)}
+.empty{border-color:#d8e3d7;background:#fbfcf8;color:#78877d}
+.entry{border-color:var(--line);background:#fffefa}
+.entry-actions .btn.warn{background:#f1e7df;color:#8a5b4d}
+body[data-theme="butter"]{--bg:#fbf3d9;--paper:#fffdf4;--ink:#463d2b;--muted:#93866a;--berry:#a17b2e;--berry2:#c19b4e;--lav:#f5ebc9;--lav2:#ecdda9;--line:#eee3c6;--rose:#f5e6d8;--sage:#e8edcf;--shadow:0 12px 32px #725b2415;background:radial-gradient(circle at 90% 0%,#f4e6b8 0,transparent 32%),linear-gradient(135deg,#fffaf0,#fbf3d9 62%,#f7edcf);color:var(--ink)}
+body[data-theme="butter"] .sidebar,body[data-theme="butter"] .card,body[data-theme="butter"] .hero{background:#fffdf4f2;border-color:#fff}
+body[data-theme="butter"] .hero{background:linear-gradient(110deg,#fffef8 0%,#fbf1d4 70%,#f5e8bd 100%)}
+body[data-theme="butter"] .hero:after{color:#e7d59c}
+body[data-theme="butter"] .btn{background:#9b762b;color:#fff}
+body[data-theme="butter"] .btn.soft{background:#f5ebc9;color:#84631f}
+body[data-theme="butter"] .btn.line{background:transparent;color:#84631f;border-color:#eee3c6}
+body[data-theme="butter"] .nav button{color:#796c51}
+body[data-theme="butter"] .nav button:hover,body[data-theme="butter"] .nav button.active{background:#f5ebc9;color:#84631f}
+body[data-theme="butter"] .eyebrow,body[data-theme="butter"] .hero-date b,body[data-theme="butter"] .stat b,body[data-theme="butter"] .food-total b{color:#94702a}
+body[data-theme="butter"] .field input,body[data-theme="butter"] .field select,body[data-theme="butter"] .field textarea,body[data-theme="butter"] .entry{border-color:#eee3c6;background:#fffefa;color:#463d2b}
+body[data-theme="butter"] .field input:focus,body[data-theme="butter"] .field textarea:focus,body[data-theme="butter"] .field select:focus{border-color:#d5b96f;box-shadow:0 0 0 3px #f8efcf}
+body[data-theme="butter"] .calday{background:#fbf6e8}
+body[data-theme="butter"] .calday.today{border-color:#a17b2e}
+body[data-theme="butter"] .calday.selected{background:#f1e4b8}
+body[data-theme="butter"] .calday.has:after{background:#a17b2e}
+body[data-theme="butter"] .stat,body[data-theme="butter"] .food-total,body[data-theme="butter"] .notice{background:#f8f1dc}
+body[data-theme="butter"] .progress{background:#eee5ca}
+body[data-theme="butter"] .progress span,body[data-theme="butter"] .macro-fill{background:linear-gradient(90deg,#b18b3e,#dfc77d)}
+body[data-theme="butter"] .macro-track{background:#eee5ca}
+body[data-theme="butter"] .pill{background:#f5ebc9;color:#84631f}
+body[data-theme="butter"] .empty{border-color:#eee3c6;background:#fffdf6;color:#93866a}
+.theme-toggle{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.toggle-track{width:34px;height:19px;border-radius:20px;background:#c8d8c8;padding:2px;display:inline-flex;align-items:center;transition:background .2s}
+.toggle-thumb{width:15px;height:15px;border-radius:50%;background:white;box-shadow:0 1px 3px #0002;transition:transform .2s}
+body[data-theme="butter"] .toggle-track{background:#d7bd75}
+body[data-theme="butter"] .toggle-thumb{transform:translateX(15px)}
+/* Prevent cards and form controls from colliding on narrow screens */
+.app,header,.brand,.head-actions,.layout,main,.content,.card,.form,.formgrid,.field,.entry{min-width:0}
+.field input,.field select,.field textarea{max-width:100%;min-width:0;box-sizing:border-box}
+.field textarea{display:block;width:100%;resize:vertical;overflow:auto;overflow-wrap:anywhere}
+.entry{flex-wrap:wrap}
+.entry>div:first-child{min-width:0;flex:1 1 160px;overflow-wrap:anywhere}
+.entry-actions{flex-wrap:wrap;max-width:100%}
+.entry-actions button{max-width:100%}
+.formgrid>*{min-width:0}
+@media(max-width:560px){
+ .head-actions{justify-content:flex-end;gap:6px}
+ .theme-toggle{padding:7px 9px;font-size:11px}
+ .theme-toggle-icon{display:none}
+ .entry-actions{flex:0 1 auto}
+ .card{padding:16px}
+}
+
 </style>
 </head>
-<body>
+<body data-theme="winter">
 <div class="app">
 <header>
  <div class="brand"><div class="logo">🫐</div><div><h1>Blueberry Planner</h1><div class="tagline">твоё пространство для красивой и спокойной жизни</div></div></div>
- <div class="head-actions"><button class="btn soft" id="export">↓ Резервная копия</button><label class="btn line" for="import">↑ Восстановить</label><input id="import" type="file" accept=".json,application/json" hidden></div>
+ <div class="head-actions"><button class="btn line theme-toggle" id="themeToggle" type="button" aria-pressed="false"><span class="theme-toggle-icon">❄</span><span id="themeLabel">Зимняя тема</span><span class="toggle-track"><span class="toggle-thumb"></span></span></button><button class="btn soft" id="export">↓ Резервная копия</button><label class="btn line" for="import">↑ Восстановить</label><input id="import" type="file" accept=".json,application/json" hidden></div>
 </header>
 <div class="top-navigation"><aside class="sidebar"><nav class="nav" id="nav"></nav><div class="privacy">♡ Данные хранятся локально в этом браузере. Делай резервные копии регулярно.</div></aside></div>
 <div class="layout">
@@ -53,6 +126,19 @@ main{min-width:0}.hero{padding:25px 29px;margin-bottom:17px;display:flex;justify
 <div class="footer">BLUEBERRY PLANNER · личное пространство · локальное хранение</div>
 </div>
 <script>
+
+const THEME_KEY='blueberry_theme_v1';
+function setTheme(theme){
+  const next=theme==='butter'?'butter':'winter';
+  document.body.dataset.theme=next;
+  localStorage.setItem(THEME_KEY,next);
+  const b=document.getElementById('themeToggle');
+  if(b){b.setAttribute('aria-pressed',String(next==='butter'));document.getElementById('themeLabel').textContent=next==='winter'?'Зимняя тема':'Сливочное масло';b.querySelector('.theme-toggle-icon').textContent=next==='winter'?'❄':'☼';}
+  const meta=document.getElementById('themeColorMeta');
+  if(meta)meta.content=next==='winter'?'#173c31':'#f5ebc9';
+}
+(function initTheme(){let saved='winter';try{saved=localStorage.getItem(THEME_KEY)||'winter'}catch{};document.body.dataset.theme=saved==='butter'?'butter':'winter';})();
+
 const SECTIONS=[
 ['home','⌂','Главная','Твоё пространство','Здесь собраны планы, забота о себе и маленькие победы.'],
 ['calendar','▦','Календарь','Твой календарь','Месяц за месяцем, день за днём — всё важное на виду.'],
@@ -145,7 +231,8 @@ document.addEventListener('click',e=>{let b=e.target.closest('[data-photo]');if(
 document.getElementById('export').onclick=()=>{let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='BlueberryPlanner-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 document.getElementById('import').onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let obj=JSON.parse(r.result);if(!obj||typeof obj!=='object'||Array.isArray(obj))throw 0;if(!confirm('Заменить текущие данные содержимым резервной копии?'))return;db=obj;save();openPage(page);alert('Копия восстановлена.')}catch{alert('Не удалось прочитать резервную копию.')}};r.readAsText(f)};
 function updateDate(){let d=new Date();document.getElementById('dateNum').textContent=d.getDate();document.getElementById('dateMonth').textContent=d.toLocaleDateString('ru-RU',{month:'long',weekday:'long'})}
-updateDate();nav();render();
+updateDate();nav();render();setTheme(document.body.dataset.theme);
+document.getElementById('themeToggle').addEventListener('click',()=>setTheme(document.body.dataset.theme==='winter'?'butter':'winter'));
 </script>
 <script>
 if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
